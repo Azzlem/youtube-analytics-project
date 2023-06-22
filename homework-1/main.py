@@ -1,7 +1,7 @@
 import os
 
 from src.channel import Channel
-api_key_my: str = os.getenv('API')
+api_key_my_youtube: str = os.getenv('API_YOUTYBE')
 
 if __name__ == '__main__':
     moscowpython = Channel('UC-OVMPlMA3-YCIeg4z5z23A')

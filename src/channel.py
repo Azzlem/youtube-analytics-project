@@ -13,14 +13,12 @@ class Channel:
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
 
-        api_key_my: str = os.getenv('API')
+        api_key_my_youtube: str = os.getenv('API_YOUTYBE')
 
-        youtube = build('youtube', 'v3', developerKey=api_key_my)
+        youtube = build('youtube', 'v3', developerKey=api_key_my_youtube)
 
-        r = youtube.channels().list(id="UC-OVMPlMA3-YCIeg4z5z23A", part="snippet, statistics").execute()
+        result = youtube.channels().list(id=self.channel_id, part="snippet, statistics").execute()
 
-        def printj(dict_to_print: dict) -> None:
-            """Выводит словарь в json-подобном удобном формате с отступами"""
-            print(json.dumps(dict_to_print, indent=2, ensure_ascii=False))
+        result = json.dumps(result, indent=2, ensure_ascii=False)
 
-        print(printj(r))
+        print(result)
