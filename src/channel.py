@@ -1,3 +1,6 @@
+import json
+import os
+from googleapiclient.discovery import build
 
 
 class Channel:
@@ -9,5 +12,15 @@ class Channel:
 
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
-        pass
-gi
+
+        api_key_my: str = os.getenv('API')
+
+        youtube = build('youtube', 'v3', developerKey=api_key_my)
+
+        r = youtube.channels().list(id="UC-OVMPlMA3-YCIeg4z5z23A", part="snippet, statistics").execute()
+
+        def printj(dict_to_print: dict) -> None:
+            """Выводит словарь в json-подобном удобном формате с отступами"""
+            print(json.dumps(dict_to_print, indent=2, ensure_ascii=False))
+
+        print(printj(r))
