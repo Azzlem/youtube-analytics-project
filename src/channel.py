@@ -11,7 +11,7 @@ class Channel:
         self.__channel_id = channel_id
 
         api_key_my_youtube: str = os.getenv('API_YOUTYBE')
-        youtube = build('youtube', 'v3', developerKey=api_key_my_youtube)
+        youtube = Channel.get_service()
         result = youtube.channels().list(id=self.__channel_id, part="snippet, statistics").execute()
 
         self.title = result["items"][0]["snippet"]["title"]
