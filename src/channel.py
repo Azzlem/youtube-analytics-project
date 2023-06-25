@@ -33,10 +33,6 @@ class Channel:
 
         print(result)
 
-    @property
-    def channel_id(self):
-        return self.__channel_id
-
     @classmethod
     def get_service(cls):
         api_key_my_youtube: str = os.getenv('API_YOUTYBE')
@@ -54,4 +50,3 @@ class Channel:
         }
         with open(name_of_file, "w", encoding="utf-8") as outfile:
             json.dump(self_to_out, outfile)
-
