@@ -10,7 +10,6 @@ class Channel:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
         self.__channel_id = channel_id
 
-        api_key_my_youtube: str = os.getenv('API_YOUTYBE')
         youtube = Channel.get_service()
         result = youtube.channels().list(id=self.__channel_id, part="snippet, statistics").execute()
 
