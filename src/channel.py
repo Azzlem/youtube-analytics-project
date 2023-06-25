@@ -34,7 +34,7 @@ class Channel:
         print(result)
 
     @property
-    def name_safe(self):
+    def channel_id(self):
         return self.__channel_id
 
     @classmethod
@@ -52,6 +52,6 @@ class Channel:
             "view_count": self.view_count,
             "subscriber_count": self.subscriber_count
         }
-        with open(name_of_file, "w", encoding="windows-1251") as outfile:
+        with open(name_of_file, "w", encoding="utf-8") as outfile:
             json.dump(self_to_out, outfile)
 
