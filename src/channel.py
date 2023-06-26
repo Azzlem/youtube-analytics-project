@@ -50,3 +50,7 @@ class Channel:
         }
         with open(name_of_file, "w", encoding="utf-8") as outfile:
             json.dump(self_to_out, outfile)
+
+    @property
+    def channel_id(self):
+        return self.__channel_id
