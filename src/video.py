@@ -20,9 +20,9 @@ class Video:
 
 class PLVideo(Video):
     """Класс для плейлиста видео ютуб, дочерний от Video"""
-    def __init__(self, video_id: str, channel_id: str):
+    def __init__(self, video_id: str, playlist_id: str):
         """Расширяет функционал класса Video добавлением id плейлиста"""
         super().__init__(video_id)
-        self.channel_id = channel_id
+        self.channel_id = playlist_id
 
 

@@ -12,6 +12,7 @@ requests = "^2.31.0"
 google-api-python-client = "^2.90.0"
 isodate = "^0.6.1"
 self = "^2020.12.3"
+pytube = "^15.0.0"
 
 
 [build-system]
