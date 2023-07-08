@@ -7,17 +7,18 @@ class PlayList:
 
     def __init__(self, playlist_id):
         self.__youtube = Channel.get_service()
-        playlist_videos = self.__youtube.playlists().list(id="PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw",
+        self.__playlist_id = playlist_id
+        playlist_videos = self.__youtube.playlists().list(id=self.__playlist_id,
                                                           part='snippet',
                                                           maxResults=50,
                                                           ).execute()
 
         self.title = playlist_videos["items"][0]["snippet"]["title"]
-        self.url = f"https://www.youtube.com/playlist?list={playlist_id}"
+        self.url = f"https://www.youtube.com/playlist?list={self.__playlist_id}"
 
     @property
     def total_duration(self):
-        playlist_videos = self.__youtube.playlistItems().list(playlistId="PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw",
+        playlist_videos = self.__youtube.playlistItems().list(playlistId=self.__playlist_id,
                                                               part='contentDetails',
                                                               maxResults=50,
                                                               ).execute()
@@ -35,14 +36,14 @@ class PlayList:
         return time[0] + time[1] + time[2] + time[3]
 
     def show_best_video(self):
-        playlist_videos = self.__youtube.playlistItems().list(playlistId="PLv_zOGKKxVpj-n2qLkEM2Hj96LO6uqgQw",
-                                                       part='contentDetails',
-                                                       maxResults=50,
-                                                       ).execute()
+        playlist_videos = self.__youtube.playlistItems().list(playlistId=self.__playlist_id,
+                                                              part='contentDetails',
+                                                              maxResults=50,
+                                                              ).execute()
         video_ids: list[str] = [video['contentDetails']['videoId'] for video in playlist_videos['items']]
         video_response = self.__youtube.videos().list(part='contentDetails,statistics',
-                                               id=','.join(video_ids)
-                                               ).execute()
+                                                      id=','.join(video_ids)
+                                                      ).execute()
         like_count = 0
         url_mro_like = ""
         for video in video_response['items']:
